@@ -53,6 +53,8 @@
 - **Project Phase**: Market research complete, product definition needed
 
 ## Session Progress
+
+### PRD Creation Phase (2025-09-02)
 - [x] Product name established
 - [x] Context analysis completed
 - [x] PRD and decision files created
@@ -63,6 +65,30 @@
 - [x] MVP Scope section complete
 - [x] Session completed successfully
 
+### PRD Expansion Phase (2025-09-02)
+- [x] Chapter 1: Problem Definition & Strategic Context (validated and enhanced)
+- [x] Chapter 2: Solution Architecture & Scope (complete with 5 feature areas)
+  - [x] Feature Area 1: Data Collection & Processing
+  - [x] Feature Area 2: Interactive Map Interface (restored missing section)
+  - [x] Feature Area 3: Property Filtering System
+  - [x] Feature Area 4: Results List View (new)
+  - [x] Feature Area 5: Property Detail Page (new - critical missing piece identified)
+  - [x] Future Roadmap (Phase 1-3 planning)
+- [x] Document structure corruption fixed (removed old one-pager sections)
+- [x] Mainpage architecture defined (Filters + Interactive Map + Results List)
+- [x] Git repository initialized and documentation centralized in docs/
+- [ ] Chapter 3: User Context & Personas (in progress)
+- [ ] Chapter 4: Critical User Journeys (pending)
+- [ ] Chapter 5: Implementation & Success (pending)
+
+## Key Technical Decisions This Session
+- **Map Pin Interactions**: Desktop hover cards vs mobile direct click, multi-object zoom behavior
+- **Swiss Value Formatting**: "950k" for under 1M, "1.25mio" for over 1M CHF
+- **Color-Coded Pins**: Land(Green), MFH(Blue), EFH(Light blue), Commercial(Violet), Various(Yellow), Parking(White)
+- **OpenStreetMap**: Cost-effective mapping solution for MVP
+- **LLM Processing**: Required for fuzzy German text parsing in auctionObjects and remarks fields
+- **Documentation Structure**: Centralized in docs/ folder, git workflow with meaningful commits
+
 ---
 
-*This log will be updated as decisions are made throughout the PRD creation process.*
+*This log tracks all decisions and progress across PRD creation sessions.*
