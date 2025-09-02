@@ -67,6 +67,7 @@
 
 ### PRD Expansion Phase (2025-09-02)
 - [x] Chapter 1: Problem Definition & Strategic Context (validated and enhanced)
+  - [x] Success Hypothesis updated with Phase 1 subscription targets (300 paid subscribers in 6 months, 1000 in 18 months)
 - [x] Chapter 2: Solution Architecture & Scope (complete with 5 feature areas)
   - [x] Feature Area 1: Data Collection & Processing
   - [x] Feature Area 2: Interactive Map Interface (restored missing section)
@@ -88,6 +89,12 @@
 - **OpenStreetMap**: Cost-effective mapping solution for MVP
 - **LLM Processing**: Required for fuzzy German text parsing in auctionObjects and remarks fields
 - **Documentation Structure**: Centralized in docs/ folder, git workflow with meaningful commits
+
+## PRD Quality Fixes Applied
+- **Pricing Math Correction**: Fixed annual discount calculation (CHF 13-17 average vs CHF 12-16 effective monthly rate)
+- **Feature Scope Clarification**: MVP processes only primary property per auction, multi-object handling deferred to post-MVP
+- **Timeline Consistency**: Clarified subscription launch timeline references for revenue targets
+- **Duplicate Content**: Identified revenue target duplication (lines 81-87 vs 323-328) for future consolidation
 
 ---
 

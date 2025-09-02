@@ -54,13 +54,38 @@
 
 ### Success Hypothesis
 
+**MVP Success Hypothesis** (30 days to launch):
+
 If we provide centralized access to all Swiss foreclosure auctions with intuitive map-based filtering, supported by targeted marketing (Google Ads, FB Ads), we will achieve:
 
 - 100+ unique visitors in month 1 post-launch
 - 20% return visitor rate within 30 days
 - 40% of users navigate beyond homepage
 - 25% actively use core features (map interaction or filtering)
-  This validates core value proposition and user engagement patterns before implementing subscription monetization.
+
+This validates core value proposition and user engagement patterns before implementing subscription monetization.
+
+**Beta Registration Phase** (Month 2-3):
+
+Building on MVP validation, if we implement user registration while keeping all features free, we will achieve:
+
+- 60% of active users convert to registered beta users
+- 500+ registered beta users by Month 3
+- 40% weekly active user rate among registered users
+- Foundation user database for Phase 1 conversion
+
+**Phase 1 Success Hypothesis** (Freemium Subscription Launch):
+
+Building on beta user base, if we implement freemium model with 7-day trial and annual discount options, we will achieve:
+
+- **300 paid subscribers within first 6 months** of subscription launch
+- **1,000 paid subscribers within 18 months** of subscription launch
+- 15% trial-to-paid conversion rate from 7-day free trial
+- CHF 13-17 average monthly subscription revenue per user (accounting for annual discount)
+- 85% monthly subscriber retention rate
+- 30% annual subscription adoption rate (20% discount incentive)
+
+This validates sustainable monetization through strategic conversion funnel and justifies expanded feature development and market expansion.
 
 ## 2. Solution Architecture & Scope
 
@@ -81,11 +106,12 @@ If we provide centralized access to all Swiss foreclosure auctions with intuitiv
 
 #### Mainpage Architecture
 
-The Auctiondeal homepage consists of three integrated components that work together to provide comprehensive auction discovery and analysis:
+The Auctiondeal platform consists of four integrated components that work together to provide comprehensive auction discovery and analysis:
 
 1. **Filters** - Restrict the scope of map pins and list results through targeted search criteria
-2. **Interactive Map** - Visual exploration with color-coded property pins and geographical context  
+2. **Interactive Map** - Visual exploration with color-coded property pins and geographical context
 3. **Results List** - Synchronized list view showing property cards for current map scope and active filters
+4. **Property Detail Page** - Comprehensive property information accessed by clicking on map pins or result cards
 
 #### Feature Implementation
 
@@ -119,16 +145,16 @@ The Auctiondeal homepage consists of three integrated components that work toget
 - **Acceptance Criteria:**
   - **Map Technology**: OpenStreetMap integration for cost-effective, customizable mapping
   - **Filter Integration**: Map pins dynamically show/hide based on active filters (see Feature Area 3 user stories)
-  - **Color-coded Property Pins**: 
+  - **Color-coded Property Pins**:
     - **Land** (Green pins)
-    - **Mehrfamilienhaus (MFH)** (Blue pins) 
+    - **Mehrfamilienhaus (MFH)** (Blue pins)
     - **Single home (EFH)** (Light blue pins)
     - **Commercial** (Violet pins)
     - **Various** (Yellow pins)
     - **Parking/Garage** (White pins)
   - **Desktop Pin Interaction**: Hover displays property card with basic info (address, estimated value, auction date) - click on card navigates to detail page
   - **Mobile Pin Interaction**: No hover - direct click on single-property pin navigates to detail page
-  - **Multi-Object Pin Behavior**: Clicking on pins with multiple objects zooms in to reveal individual pins
+  - **Multi-Object Pin Behavior (Post-MVP)**: MVP processes only primary property per auction; future enhancement will handle multiple objects with zoom-in functionality
   - **Interactive Navigation**: Zoom, pan functionality for map exploration
   - **Swiss Geographic Focus**: Default view centers on Switzerland with appropriate zoom level
   - **Real-time Updates**: Map pins reflect current active filters and database updates
@@ -267,18 +293,50 @@ The Auctiondeal homepage consists of three integrated components that work toget
 ### Future Roadmap
 
 **Phase 1: Monetization & Enhanced Filtering (Post-MVP)**
-- Subscription and payment systems
-- Granular filters (specific room counts, property size ranges, construction year)
-- Additional documents integration (official auction documents, property registers)
-- Advanced user accounts with saved searches and notifications
+
+**3-Phase Monetization Progression:**
+
+*Month 1: MVP Launch*
+- Completely free access, no registration required
+- Focus on user acquisition and engagement validation
+- All current features available to anonymous users
+
+*Month 2-3: Beta Registration Phase*
+- Require email registration to access platform
+- All features remain free for registered beta users
+- Build user database and communication channel
+- Target: 500+ registered beta users
+
+*Month 4+: Freemium Subscription Launch*
+- **Free Tier**: Basic map viewing and simple filtering
+- **Premium Trial**: 7-day free trial of advanced features
+- **Subscription Options**:
+  - Monthly: CHF 15-20/month
+  - Annual: CHF 144-192/year (20% discount = CHF 12-16/month effective)
+- **Premium Features**:
+  - Advanced notifications and saved search alerts
+  - Granular filters (room counts, property size ranges, construction year)
+  - Enhanced property data and document integration
+  - Portfolio management with saved searches and watchlists
+  - Export capabilities (PDF reports, CSV data)
+  - Priority customer support
+
+**Revenue & Conversion Targets:**
+- 15% trial-to-paid conversion rate
+- 30% annual subscription adoption rate
+- 85% monthly subscriber retention rate
+- 300 paid subscribers within 6 months of subscription launch
+- 1,000 paid subscribers within 18 months of subscription launch
 
 **Phase 2: Data Enrichment & Intelligence (6-12 months)**
+
 - GIS integration for enhanced geographical analysis
 - Kataster (building zones) data integration for zoning information
 - Standortberichte integration (e.g., ZKB location reports) for market context
 - Crowdsourced property inspection network (potential extension - individuals provide on-site visuals and condition reports)
 
 **Phase 3: International Expansion (12+ months)**
+
 - German market expansion (similar foreclosure systems)
 - Austrian market adaptation
 - Other European foreclosure markets with minimal technical adaptation
@@ -286,7 +344,102 @@ The Auctiondeal homepage consists of three integrated components that work toget
 
 ## 3. User Context & Personas
 
-[To be expanded - comprehensive user personas and behavioral analysis]
+### User Segmentation Overview
+
+Auctiondeal serves two primary user segments in the Swiss foreclosure auction market:
+
+1. **Individual Property Investors (80% of target users)**: Private investors seeking below-market opportunities
+2. **Small Real Estate Firms (20% of target users)**: Professional firms with 2-10 employees monitoring territories
+
+Both segments share common pain points around SHAB's unfiltered data and fragmented information sources, but differ in investment scale, frequency, and decision-making processes.
+
+### Primary Persona: Individual Property Investor
+
+**Name**: "Thomas the Territory Investor"
+
+**Demographics**:
+- Age: 38-55 years old
+- Location: Urban/suburban Switzerland (Zurich, Basel, Bern areas)
+- Income: CHF 120,000-200,000 annually
+- Investment Capital: CHF 200,000-800,000 available for opportunities
+- Language: German (primary), some French/Italian
+
+**Professional Background**:
+- Primary occupation: Corporate professional, entrepreneur, or successful tradesperson
+- Real estate experience: 3-8 years of property investment
+- Portfolio: Currently owns 1-3 investment properties
+- Investment approach: Buy-and-hold rental properties, occasional renovation projects
+
+**Goals & Motivations**:
+- **Primary Goal**: Build passive income through rental property portfolio
+- **Investment Strategy**: Target undervalued properties in familiar geographic areas (30-50km radius from home)
+- **Risk Profile**: Moderate - willing to invest in properties requiring minor-to-moderate renovation
+- **ROI Expectations**: 4-7% annual rental yield, 15-25% total return over 5-7 years
+- **Time Commitment**: 2-5 hours weekly for deal research and property management
+
+**Pain Points & Frustrations**:
+- **Information Overload**: SHAB provides too much irrelevant data without filtering
+- **Geographic Inefficiency**: Wastes time reviewing auctions outside investment radius
+- **Research Time**: Manually investigating each property across multiple websites
+- **Missed Opportunities**: Discovers attractive auctions too late or after viewing deadlines
+- **Competitive Disadvantage**: Lacks market intelligence compared to professional investors
+
+**Technology & Behavior Patterns**:
+- **Device Usage**: 60% mobile (during commute, evening research), 40% desktop (weekend deep-dive analysis)
+- **Research Habits**: Systematic weekly review sessions, opportunistic daily checks
+- **Decision Timeline**: 2-14 days from discovery to auction attendance
+- **Information Sources**: SHAB, Google Maps, cantonal websites, local real estate portals
+- **Social Influence**: Seeks validation from investment communities, real estate forums
+
+**Subscription Decision Factors**:
+- **Value Threshold**: Must save 3+ hours weekly to justify CHF 15-20/month cost
+- **Feature Priorities**: Geographic filtering, property type focus, viewing appointment alerts
+- **Trial Behavior**: Conservative - thoroughly tests free features before upgrading
+- **Payment Preference**: Annual subscription if convinced of long-term value (20% discount appeals)
+
+### Secondary Persona: Small Real Estate Firm
+
+**Name**: "Sandra's Smart Investments Ltd"
+
+**Company Profile**:
+- Team Size: 3-7 employees (owner + analysts/agents)
+- Geographic Focus: 1-2 cantons, systematic territory coverage
+- Investment Volume: CHF 2-10 million annually across multiple properties
+- Business Model: Mix of buy-hold-rent and renovation-resale projects
+
+**Professional Context**:
+- **Role**: Investment analyst or firm owner making acquisition decisions
+- **Experience**: 8-15 years in Swiss real estate market
+- **Decision Authority**: Evaluates opportunities, presents to investment committee
+- **Market Knowledge**: Deep understanding of local property values and rental markets
+
+**Goals & Motivations**:
+- **Systematic Coverage**: Monitor all foreclosure opportunities in territory
+- **Competitive Intelligence**: Track market activity and pricing trends
+- **Efficiency**: Maximize deal flow while minimizing research overhead
+- **Risk Management**: Thorough due diligence before auction participation
+- **Portfolio Growth**: Consistent deal sourcing for steady business expansion
+
+**Pain Points & Frustrations**:
+- **Manual Processes**: Current research workflow doesn't scale with volume
+- **Team Coordination**: Difficult to track which properties each team member is investigating
+- **Market Intelligence**: Lacks historical auction data for pricing analysis
+- **Notification Delays**: May miss opportunities during team member absences
+- **Documentation**: Tedious manual compilation of property research files
+
+**Technology & Usage Patterns**:
+- **Multi-user Access**: Team members need shared access to research and saved searches
+- **Integration Needs**: Export data for internal CRM and analysis systems
+- **Professional Requirements**: Detailed reporting capabilities for investment committees
+- **Volume Processing**: Reviews 20-50 potential opportunities monthly
+- **Response Speed**: Needs immediate alerts for high-priority property types
+
+**Subscription Considerations**:
+- **Business Expense**: CHF 15-20/month easily justified as business tool
+- **Team Multiplier**: Value increases with multiple team members using platform
+- **Professional Features**: Willing to pay premium for export, reporting, multi-user capabilities
+- **Annual Commitment**: Likely to choose annual subscription for budget predictability
+- **Upgrade Path**: Early candidate for higher-tier professional features in future
 
 ## 4. Critical User Journeys
 
