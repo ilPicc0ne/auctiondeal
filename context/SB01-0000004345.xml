@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SB01:publication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SB01="https://shab.ch/shab/SB01-export" xsi:schemaLocation="https://shab.ch/shab/SB01-export https://amtsblattportal.ch/api/v1/schemas/shab/1.25/SB01-export.xsd">
+<meta>
+  <id>8fcb78c0-ba7f-473c-95fa-6be54a3f28b4</id>
+  <rubric>SB</rubric>
+  <subRubric>SB01</subRubric>
+  <language>de</language>
+  <registrationOffice>
+    <id>82163201-89c7-11e8-9591-0050569d3c43</id>
+    <displayName>Betreibungsamt Region Frick</displayName>
+    <street>Gemeindehausplatz</street>
+    <streetNumber>1</streetNumber>
+    <swissZipCode>5070</swissZipCode>
+    <town>Frick</town>
+    <containsPostOfficeBox>true</containsPostOfficeBox>
+    <postOfficeBox>
+      <number>164</number>
+    </postOfficeBox>
+  </registrationOffice>
+  <publicationNumber>SB01-0000004345</publicationNumber>
+  <publicationState>PUBLISHED</publicationState>
+  <publicationDate>2025-09-01</publicationDate>
+  <expirationDate>2026-09-01</expirationDate>
+  <primaryTenantCode>shab</primaryTenantCode>
+  <legalRemedy>Es wird ausdrücklich auf das Bundesgesetz über den Erwerb von Grundstücken durch Personen im Ausland (BewG) sowie auf die Verordnung über den Erwerb von Grundstücken durch Personen im Ausland (BewV) aufmerksam gemacht. &lt;br />Innert der Frist nicht angemeldete Ansprüche sind, soweit sie nicht durch die öffentlichen Bücher festgestellt sind, von der Teilnahme am Ergebnis der Verwertung ausgeschlossen. Ebenso haben Faustpfandgläubiger von Pfandtiteln ihre Faustpfandforderungen anzumelden. &lt;br />Im Übrigen wird auf die Steigerungsbedingungen verwiesen. &lt;br />Publikation nach SchKG 133, 134, 135, 138; VZG vom 23. April 1920, Art. 29.</legalRemedy>
+  <cantons>AG</cantons>
+  <secondaryTenants>
+    <tenantCode>kabag</tenantCode>
+    <publicationDate>2025-09-01</publicationDate>
+  </secondaryTenants>
+  <title>
+    <de>Betreibungsamtliche Grundstücksteigerung Asha Kumari Jain Cornet</de>
+    <en>Property auction initiated by the debt enforcement office Asha Kumari Jain Cornet</en>
+    <it>Incanto immobiliare Asha Kumari Jain Cornet</it>
+    <fr>Vente aux enchères d'immeubles dans le cadre de la poursuite Asha Kumari Jain Cornet</fr>
+  </title>
+</meta>
+<content>
+  <debtor>
+    <selectType>person</selectType>
+    <person>
+      <prename>Asha Kumari</prename>
+      <name>Jain Cornet</name>
+      <countryOfOrigin>
+        <name>
+          <de>Schweiz</de>
+          <fr>Suisse</fr>
+          <it>Svizzera</it>
+          <en>Switzerland</en>
+        </name>
+        <isoCode>CH</isoCode>
+      </countryOfOrigin>
+      <dateOfBirth>1972-06-25</dateOfBirth>
+      <residence>
+        <selectType>switzerland</selectType>
+      </residence>
+      <addressSwitzerland>
+        <street>Gänsacker</street>
+        <houseNumber>2</houseNumber>
+        <swissZipCode>5070</swissZipCode>
+        <town>Frick</town>
+      </addressSwitzerland>
+    </person>
+  </debtor>
+  <ownerNotDebtor>false</ownerNotDebtor>
+  <auctionObjects>&lt;p>STW Frick 2263-2, 79/1000 Wertquote am Stammgrundstück LIG Frick 2263, mit Sonderrecht an der 3 1/2-Zimmerwohnung Nr. C-2 im Erdgeschoss mit Nebenraum im Untergeschoss, 100 m2 NWF, Terrasse und Gartenanteil 58.8 m2, Gänsacker 2, 5070 Frick. Mitpfand: GB Frick 2264-0-28, 1/46 Wertquote am Stammgrundstück LIG Frick 2264, Tiefgaragenplatz im Untergeschoss&lt;/p>&lt;p>Rechtskräftige Betreibungsamtliche Schätzung: CHF 777'000.00&lt;/p></auctionObjects>
+  <auction>
+    <date>2025-11-05</date>
+    <time>10:00</time>
+    <location>Gemeindehaus, Gemeindehausplatz 1, 5070 Frick, 1. Stock, Sitzungszimmer Frickberg</location>
+  </auction>
+  <additionalLegalRemedy>Die Verwertung erfolgt auf Verlangen des Grundpfandgläubigers im 1. Rang.
+Das Steigerungsobjekt ist bewohnt.
+Der Erwerber hat an der Steigerung unmittelbar nach dem dritten Aufruf und vor dem Zuschlag eine Anzahlung von CHF 100'000.00 (wovon Fr. 90'000.00 an den Kaufpreis angerechnet werden und Fr. 10'000.00 zur Sicherung der Eigentumsübertragung dienen) wie folgt zu leisten: a) Durch Vorlegung eines unwiderruflichen Zahlungsversprechens einer dem Bundesgesetz über die Banken und Sparkassen (Bankengesetz; BankG; SR 952.0) unterstehenden Bank zugunsten des Betreibungsamtes Region Frick, Gemeindehausplatz 1, 5070 Frick, welches einzig unter der Bedingung der Erteilung des Zuschlages stehen darf und im Übrigen unbedingt sein muss. b) in bar. c) Die Zahlung von insgesamt Fr. 100'000.00 kann auch beim Betreibungsamt Region Frick im Voraus mittels Überweisung (IBAN: CH04 0900 0000 5000 3934 2/ mit Vermerk «Steigerung 5.10.2025/J.C.») hinterlegt werden. Die Gutschrift auf dem Konto hat spätestens bis am 31.09.2025 zu erfolgen. Eine solche Vorauszahlung wird nicht verzinst und dem Einzahler innert 20 Arbeitstagen nach der Grundstücksteigerung zurückerstattet, falls ihm das Grundstück nicht zugeschlagen wird.</additionalLegalRemedy>
+  <circulation>
+    <entryDeadline>2025-09-22</entryDeadline>
+  </circulation>
+  <registration>
+    <entryDeadline>2025-10-08</entryDeadline>
+    <commentEntryDeadline>bis 17.10.2025, zu den Büroöffnungszeiten beim Betreibungsamt Region Frick</commentEntryDeadline>
+  </registration>
+  <registrationOffice>Betreibungsamt Region Frick
+Gemeindehausplatz 1, P.O.B. 164 
+5070 Frick</registrationOffice>
+</content>
+</SB01:publication>

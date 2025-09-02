@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SB01:publication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SB01="https://shab.ch/shab/SB01-export" xsi:schemaLocation="https://shab.ch/shab/SB01-export https://amtsblattportal.ch/api/v1/schemas/shab/1.25/SB01-export.xsd">
+<meta>
+  <id>da19c573-6484-43cd-b073-11525e688aa2</id>
+  <rubric>SB</rubric>
+  <subRubric>SB01</subRubric>
+  <language>de</language>
+  <registrationOffice>
+    <id>d313e25e-d8eb-11e8-bbfc-0050569de354</id>
+    <displayName>Betreibungsamt Fällanden</displayName>
+    <street>Schwerzenbachstrasse</street>
+    <streetNumber>10</streetNumber>
+    <swissZipCode>8117</swissZipCode>
+    <town>Fällanden</town>
+    <containsPostOfficeBox>false</containsPostOfficeBox>
+  </registrationOffice>
+  <publicationNumber>SB01-0000004347</publicationNumber>
+  <publicationState>PUBLISHED</publicationState>
+  <publicationDate>2025-09-02</publicationDate>
+  <expirationDate>2026-09-02</expirationDate>
+  <primaryTenantCode>shab</primaryTenantCode>
+  <legalRemedy>Es wird ausdrücklich auf das Bundesgesetz über den Erwerb von Grundstücken durch Personen im Ausland (BewG) sowie auf die Verordnung über den Erwerb von Grundstücken durch Personen im Ausland (BewV) aufmerksam gemacht. &lt;br />Innert der Frist nicht angemeldete Ansprüche sind, soweit sie nicht durch die öffentlichen Bücher festgestellt sind, von der Teilnahme am Ergebnis der Verwertung ausgeschlossen. Ebenso haben Faustpfandgläubiger von Pfandtiteln ihre Faustpfandforderungen anzumelden. &lt;br />Im Übrigen wird auf die Steigerungsbedingungen verwiesen. &lt;br />Publikation nach SchKG 133, 134, 135, 138; VZG vom 23. April 1920, Art. 29.</legalRemedy>
+  <cantons>ZH</cantons>
+  <secondaryTenants>
+    <tenantCode>kabzh</tenantCode>
+    <publicationDate>2025-09-02</publicationDate>
+  </secondaryTenants>
+  <title>
+    <de>Betreibungsamtliche Grundstücksteigerung Zeller Erwin</de>
+    <en>Property auction initiated by the debt enforcement office Zeller Erwin</en>
+    <it>Incanto immobiliare Zeller Erwin</it>
+    <fr>Vente aux enchères d'immeubles dans le cadre de la poursuite Zeller Erwin</fr>
+  </title>
+</meta>
+<content>
+  <debtor>
+    <selectType>person</selectType>
+    <person>
+      <prename>Zeller</prename>
+      <name>Erwin</name>
+      <countryOfOrigin>
+        <name>
+          <de>Schweiz</de>
+          <fr>Suisse</fr>
+          <it>Svizzera</it>
+          <en>Switzerland</en>
+        </name>
+        <isoCode>CH</isoCode>
+      </countryOfOrigin>
+      <placeOfOrigin>Arth</placeOfOrigin>
+      <dateOfBirth>1973-09-16</dateOfBirth>
+      <residence>
+        <selectType>switzerland</selectType>
+      </residence>
+      <addressSwitzerland>
+        <street>Kirchweg</street>
+        <houseNumber>2</houseNumber>
+        <swissZipCode>8124</swissZipCode>
+        <town>Maur</town>
+      </addressSwitzerland>
+    </person>
+  </debtor>
+  <ownerNotDebtor>false</ownerNotDebtor>
+  <auctionObjects>&lt;p>Grundbuch Maur, Blatt 3433, Kataster 5706, Plan 125, haltend 930 m&lt;sup>2&lt;/sup>, Wohnhaus mit Schreinerei&lt;/p>&lt;p>&lt;b>Kirchweg 2 in 8124 Maur&lt;/b>&lt;/p></auctionObjects>
+  <auction>
+    <date>2025-12-03</date>
+    <time>14:30</time>
+    <location>Gemeinde Fällanden, Mehrzweckraum, Schwerzenbachstrasse 10, 8117 Fällanden</location>
+  </auction>
+  <locationCirculationAuthority>Betreibungsamt Fällanden, Schwerzenbachstrasse 10, 8117 Fällanden, 2. OG oder auf www.faellanden.ch/betreibungsamt.</locationCirculationAuthority>
+  <circulation>
+    <entryDeadline>2025-09-22</entryDeadline>
+  </circulation>
+  <registration>
+    <entryDeadline>2025-10-23</entryDeadline>
+  </registration>
+  <registrationOffice>Betreibungsamt Fällanden
+Schwerzenbachstrasse 10 
+8117 Fällanden</registrationOffice>
+  <remarks>Besichtigung: Montag, 22. September 2025 von 14.00 Uhr bis 15.30 Uhr und
+Mittwoch, 05. November 2025 von 10.00 Uhr bis 11.30 Uhr</remarks>
+</content>
+</SB01:publication>
