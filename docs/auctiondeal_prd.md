@@ -170,52 +170,50 @@ The Auctiondeal platform consists of four integrated components that work togeth
 
 **Feature Area 3: Property Filtering System**
 
-- **Purpose:** Efficient opportunity discovery through targeted search capabilities
+- **Purpose:** Efficient opportunity discovery through targeted search capabilities across property type, value, and location
 
-- **User Stories:**
-
-  - As a **private investor**, I want to filter auctions by estimated value range using Swiss-style formatting, so that I only see properties within my budget constraints
+- **User Story:**
+  - As a **private investor**, I want to filter auction properties by category, value range, and location, so that I can quickly find investment opportunities matching my specific criteria
 
 - **Acceptance Criteria:**
-  - **Value range input**: Slider or dual input fields (min/max amounts)
-  - **Swiss value formatting in slider:**
-    - **Under 1 million**: "950k" (for CHF 950'000)
-    - **Over 1 million**: "1.25mio" (for CHF 1'250'000)
-    - **Exact values on hover/selection**: Show full CHF amount
-  - **Dynamic filtering**: Real-time map pin and results list updates as user adjusts range
-  - **Smart defaults**: Pre-populated ranges based on current visible auctions (e.g., 200k - 2mio)
-  - **Mobile optimization**: Touch-friendly slider controls with readable Swiss formatting
-  - **Data source**: Uses estimated values parsed from `auctionObjects` "Rechtskräftige Betreibungsamtliche Schätzung" text
-  - **Fallback handling**: Properties without parsed estimated values show in "Unknown value" category with option to include/exclude
-- **Technical Notes:**
 
-  - Swiss formatting logic: < 1M = "XXXk", ≥ 1M = "X.XXmio"
-  - Depends on LLM-powered value extraction from fuzzy `auctionObjects` text
-  - Handle various currency formats and German phrasing variations
-  - Real-time filtering without page reload
-  - Preserve filter state during map interactions
+**Primary Filters (Priority Order):**
 
-  - As a **private investor**, I want to filter map pins by property type, so that I only see opportunities matching my investment focus
+**1. Property Category Filter** *(Highest Priority)*
+  - **Interface**: Checkbox grid with 6 main categories matching map pin colors
+  - **Categories**: Land (Green), MFH (Blue), EFH (Light blue), Commercial (Violet), Various (Yellow), Parking/Garage (White)
+  - **Data Source**: LLM classification from German `auctionObjects` descriptions
+  - **Default**: All categories selected
 
-- **Acceptance Criteria (Property Type Filter):**
-  - **Filter interface**: Checkbox list or dropdown with 6 main property categories:
-    - **Land** (Green pins)
-    - **Mehrfamilienhaus (MFH)** (Blue pins)
-    - **Single home (EFH)** (Light blue pins)
-    - **Commercial** (Violet pins)
-    - **Various** (Yellow pins)
-    - **Parking/Garage** (White pins)
-  - **Real-time map filtering**: Show/hide pins based on selected property types
-  - **Visual feedback**: Filtered pin categories remain color-coded, unselected types hidden
-  - **Select all/none**: Quick toggle options for all categories
-  - **Mobile optimization**: Touch-friendly checkboxes with readable labels
-  - **Data source**: Property type classification from LLM analysis of `auctionObjects` descriptions
-  - **Fallback handling**: Unclassified properties show in "Various" category
-- **Technical Notes (Property Type Filter):**
-  - Depends on LLM-powered property type classification from German descriptions
-  - Filter state persists during map interactions and value range changes
-  - Combined filtering with value range (AND logic)
-  - Pin color coding matches filter categories
+**2. Value Range Filter** *(Second Priority)*
+  - **Interface**: Dual-handle slider with Swiss formatting display
+  - **Swiss Formatting**: Under 1M shows "950k", over 1M shows "1.25mio", exact CHF on hover
+  - **Smart Defaults**: Auto-populated based on visible auction range (e.g., 200k-2mio)
+  - **Data Source**: Estimated values from `auctionObjects` "Rechtskräftige Betreibungsamtliche Schätzung"
+  - **Fallback**: Properties without estimates show in "Unknown value" category with include/exclude toggle
+
+**3. Location Filter** *(Third Priority)*
+  - **Interface**: Multi-select canton dropdown (Zurich, Basel, Bern, etc.)
+  - **Map Integration**: Bounds adjust to selected regions
+  - **Data Source**: Geocoded property addresses
+
+**Supporting Filters:**
+
+**4. Date Range**: Date picker with presets (next 30 days default)
+**5. Text Search**: Live search across addresses and descriptions
+
+- **System Behavior:**
+  - **Real-time Updates**: Map and results update immediately on filter changes
+  - **Filter Combination**: Uses AND logic (properties must match all active filters)
+  - **State Persistence**: Settings maintained during navigation and refresh
+  - **Mobile Optimization**: Touch-friendly controls with readable Swiss formatting
+
+- **Implementation Notes:**
+  - Can be developed as separate stories during implementation
+  - Swiss formatting: < 1M = "XXXk", ≥ 1M = "X.XXmio"
+  - LLM-powered value extraction and property classification required
+  - Filter state stored in URL for shareable views
+
 - **Priority:** P0 (MVP required)
 
 **Feature Area 4: Results List View**
@@ -443,8 +441,212 @@ Both segments share common pain points around SHAB's unfiltered data and fragmen
 
 ## 4. Critical User Journeys
 
-[To be expanded - detailed user journeys with edge cases and failure scenarios]
+### Journey 1: First-Time User Discovery & Exploration
+
+**Persona**: Thomas the Territory Investor (Individual Investor)
+**Trigger**: Discovers Auctiondeal through Google Ads while searching "Swiss foreclosure auctions"
+**Goal**: Evaluate platform value and find relevant investment opportunities
+
+**Primary Path**:
+1. **Landing Page Entry**: User arrives on homepage, sees map with color-coded pins
+2. **Initial Exploration**: Hovers over pins near their location (Zurich area), sees property cards
+3. **Filter Application**: Adjusts value range to CHF 400k-800k, selects "MFH" property type
+4. **Map Interaction**: Zoom into familiar neighborhoods, clicks on blue pins
+5. **Property Detail View**: Reviews comprehensive property information, viewing appointments
+6. **Interest Validation**: Finds 2-3 properties matching criteria, bookmarks browser tab
+7. **Return Visit**: Comes back within 48 hours to check for new auctions
+
+**Success Metrics**: User navigates beyond homepage (40% target), uses core filtering features (25% target)
+
+**Edge Cases & Failure Scenarios**:
+- **No Properties in Area**: User's location has no current auctions → Show nearest properties with distance
+- **Mobile Performance**: Slow map loading on mobile → Progressive loading with skeleton UI
+- **Filter Zero Results**: User sets too restrictive filters → Suggest relaxed criteria
+- **Property Detail Errors**: Missing SHAB data → Graceful fallback with available information
+
+### Journey 2: Beta Registration & Trial Conversion
+
+**Persona**: Sandra's Smart Investments Ltd (Small Real Estate Firm)
+**Trigger**: Week 2 after beta registration launch, existing free user
+**Goal**: Evaluate premium features during 7-day trial, decide on subscription
+
+**Primary Path**:
+1. **Registration Prompt**: Sees "Register for beta access" modal after 3rd visit
+2. **Quick Registration**: Provides business email, creates account in 30 seconds
+3. **Enhanced Experience**: Access to saved searches, property watchlists
+4. **Trial Notification**: 2 weeks later, prompted to try 7-day premium trial
+5. **Premium Features**: Tests advanced filters (room count, construction year), export functionality
+6. **Team Collaboration**: Shares saved searches with investment committee
+7. **ROI Calculation**: Estimates 5+ hours saved weekly vs manual SHAB research
+8. **Annual Subscription**: Chooses annual plan for 20% discount (CHF 144/year)
+
+**Success Metrics**: 60% of users register for beta (target), 15% trial-to-paid conversion
+
+**Edge Cases & Failure Scenarios**:
+- **Email Verification Issues**: Corporate firewall blocks emails → Alternative verification methods
+- **Trial Feature Confusion**: User can't find premium features → Guided onboarding tour
+- **Payment Processing**: Swiss banking integration issues → Multiple payment method options
+- **Team Access**: Need multiple user accounts → Upgrade path to team plans
+
+### Journey 3: Daily Professional Workflow
+
+**Persona**: Thomas the Territory Investor (Experienced Subscriber)
+**Trigger**: Daily morning routine, 3 months after subscription
+**Goal**: Efficiently review new auction opportunities, manage active prospects
+
+**Primary Path**:
+1. **Morning Check**: Opens mobile app during commute, sees notification badge "3 new matches"
+2. **Alert Review**: Reviews saved search notifications for "MFH within 40km Zurich, CHF 300-600k"
+3. **Quick Triage**: Scans property cards, marks 1 property as "Interested", dismisses 2 others
+4. **Desktop Deep-dive**: Evening session on desktop, opens detailed property analysis
+5. **Research Enhancement**: Reviews aerial imagery, property history, zoning information
+6. **Viewing Appointment**: Books property viewing through contact information provided
+7. **Investment Decision**: After viewing, decides to attend auction, sets calendar reminder
+
+**Success Metrics**: 85% monthly retention rate, 40% weekly active users
+
+**Edge Cases & Failure Scenarios**:
+- **False Positive Alerts**: Property doesn't match criteria → Improve LLM classification accuracy
+- **Viewing Conflicts**: Multiple properties same day → Calendar integration suggestions
+- **Auction Cancellation**: Property withdrawn → Immediate notification and alternative suggestions
+- **Mobile Connectivity**: Poor connection during commute → Offline caching of saved properties
 
 ## 5. Implementation & Success
 
-[To be expanded - technical architecture, success metrics, and go-to-market strategy]
+### Technical Architecture
+
+#### Core Technology Stack
+
+**Frontend**:
+- **Framework**: React 18+ with TypeScript for type safety and developer productivity
+- **Mapping**: Leaflet.js with OpenStreetMap tiles for cost-effective, customizable mapping
+- **State Management**: Zustand for lightweight, performant state management
+- **Styling**: Tailwind CSS for consistent, responsive design system
+- **Build Tool**: Vite for fast development and optimized production builds
+
+**Backend**:
+- **Runtime**: Node.js with Express.js for API server
+- **Database**: PostgreSQL with PostGIS extension for geospatial data
+- **Data Processing**: LLM integration (OpenAI GPT-4 or local models) for German text parsing
+- **Caching**: Redis for session management and API response caching
+- **Background Jobs**: Bull Queue for SHAB data scraping and processing
+
+**Infrastructure**:
+- **Hosting**: DigitalOcean or Hetzner (Swiss/German data centers)
+- **CDN**: CloudFlare for global performance and DDoS protection  
+- **Monitoring**: Sentry for error tracking, PostHog for user analytics
+- **CI/CD**: GitHub Actions for automated testing and deployment
+
+#### Data Architecture
+
+**SHAB Integration**:
+- Daily automated API calls to `https://www.shab.ch/api/v1/publications`
+- XML parsing and storage with complete audit trail
+- LLM-powered extraction of structured data from German text
+- Duplicate detection using `publicationNumber` as unique identifier
+
+**Database Schema**:
+```sql
+-- Core auction data
+auctions: id, publication_number, publication_date, status, raw_xml
+properties: id, auction_id, address, estimated_value, property_type, lat, lng
+auction_events: id, auction_id, date, time, location, registration_deadline
+```
+
+**API Design**:
+- RESTful endpoints with consistent error handling
+- GraphQL consideration for complex filtering requirements
+- Rate limiting and authentication for subscription features
+- WebSocket connections for real-time map updates
+
+### Development Timeline
+
+#### Phase 0: Foundation (Weeks 1-2)
+- **Week 1**: Development environment setup, database schema, SHAB API integration
+- **Week 2**: Core data processing pipeline, LLM integration for text extraction
+
+#### MVP Development (Weeks 3-4)  
+- **Week 3**: Frontend foundation - map integration, basic filtering, responsive design
+- **Week 4**: Property detail pages, testing, deployment, performance optimization
+
+#### Post-Launch Iterations (Month 2-4)
+- **Month 2**: Beta registration system, user analytics, performance monitoring
+- **Month 3**: Subscription infrastructure, payment integration, premium features  
+- **Month 4**: Advanced filtering, saved searches, notification system
+
+### Success Metrics & KPIs
+
+#### MVP Success Criteria (Month 1)
+- **Traffic**: 100+ unique monthly visitors
+- **Engagement**: 25% feature usage rate (filters, map interaction)
+- **Retention**: 20% return visitor rate within 30 days
+- **Performance**: <3s initial page load, <1s filter response time
+
+#### Beta Phase Metrics (Month 2-3)
+- **Registration**: 60% conversion from anonymous to registered users
+- **User Base**: 500+ registered beta users by Month 3
+- **Activity**: 40% weekly active user rate among registered users
+- **Feedback**: Net Promoter Score (NPS) >50
+
+#### Subscription Launch KPIs (Month 4+)
+- **Conversion**: 15% trial-to-paid subscription rate
+- **Revenue**: CHF 3,000-6,000 MRR by Month 6, CHF 10,000-20,000 MRR by Month 18
+- **Retention**: 85% monthly subscriber retention rate
+- **Growth**: 300 paid subscribers (Month 6), 1,000 paid subscribers (Month 18)
+
+### Go-to-Market Strategy
+
+#### Launch Marketing (Month 1-3)
+
+**Digital Marketing**:
+- **Google Ads**: Targeted campaigns for "Swiss foreclosure auctions", "Zwangsversteigerung"
+- **Facebook/Instagram Ads**: Property investor interest targeting, lookalike audiences
+- **Content Marketing**: SEO-optimized blog posts about Swiss auction market insights
+- **Budget**: CHF 2,000-3,000/month for paid acquisition
+
+**Community Engagement**:
+- **Real Estate Forums**: Active participation in Swiss property investor communities
+- **LinkedIn Outreach**: Direct engagement with small real estate firms
+- **Local Events**: Swiss property investment meetups and conferences
+- **Press Coverage**: Swiss real estate and fintech media outreach
+
+#### Subscription Conversion (Month 4+)
+
+**Product-Led Growth**:
+- **Free Trial**: 7-day premium feature access with gradual feature restriction
+- **Email Sequences**: Automated onboarding and conversion campaigns
+- **In-App Messaging**: Contextual upgrade prompts based on usage patterns
+- **Value Demonstration**: Clear ROI calculation (time saved vs subscription cost)
+
+**Retention Strategy**:
+- **Customer Success**: Proactive support for high-value users
+- **Feature Updates**: Regular premium feature releases based on user feedback
+- **Community Building**: Exclusive subscriber benefits and market insights
+- **Annual Incentives**: 20% discount for annual subscriptions
+
+### Risk Assessment & Mitigation
+
+#### Technical Risks
+- **SHAB API Changes**: Monitor for API modifications, maintain fallback data sources
+- **LLM Accuracy**: Implement human review workflows, continuous model improvement
+- **Scalability**: Design for 10x growth, implement caching and CDN strategies
+- **Data Quality**: Comprehensive error handling, manual data correction workflows
+
+#### Business Risks  
+- **Competition**: Continuous feature differentiation, patent considerations where applicable
+- **Market Size**: Conservative growth projections, international expansion planning
+- **Regulatory**: GDPR compliance, Swiss data protection requirements
+- **Economic Conditions**: Diversified revenue model, cost structure flexibility
+
+#### Mitigation Strategies
+- **Technical**: Comprehensive monitoring, automated testing, gradual feature rollouts
+- **Business**: Customer feedback loops, competitive intelligence, financial reserves
+- **Legal**: Regular compliance audits, legal counsel consultation, privacy-first design
+
+### Success Definition
+
+**MVP Success**: Platform demonstrates product-market fit with consistent user engagement and return visits, validating core value proposition before monetization investment.
+
+**Phase 1 Success**: Sustainable subscription business with 300+ paying customers, proving scalable revenue model and justifying expansion to enhanced features and geographic markets.
+
+**Long-term Success**: Market-leading Swiss auction platform with 1,000+ subscribers, expansion-ready technology platform, and clear path to international markets.
