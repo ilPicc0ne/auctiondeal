@@ -56,9 +56,15 @@ For detailed documentation, examples, and guidance, see the [template documentat
 
 **Ready to start?** Edit `context/initial.md` with your project idea and run `/prd_create_base`!
 
-## Technical Documentation
+## Project Documentation Structure
 
-### API Integration
+### Core PRD Files
+- **`docs/auctiondeal_prd.md`** - Main Product Requirements Document (comprehensive specification)
+- **`docs/auctiondeal_decisions.md`** - Decision tracking log with session history
+
+**Note**: PRD and decisions files are maintained only in docs/ folder for centralized documentation
+
+### Technical Documentation
 - **SHAB API Interface**: See `docs/shab-api-interface.md` for complete Swiss Commercial Gazette API documentation
   - Primary data source for auction listings
   - Daily scraping implementation guidance
@@ -67,3 +73,8 @@ For detailed documentation, examples, and guidance, see the [template documentat
   - `context/SB01-0000004345.xml` - Basic auction structure with estimated value in auctionObjects
   - `context/SB01-0000004347.xml` - With Besichtigung data in remarks field
 - **Data Extraction Challenge**: `auctionObjects` and `remarks` contain unstructured text requiring LLM-powered parsing
+
+### Git Workflow
+- After each accepted change, create a meaningful git commit
+- All documentation maintained centrally in docs/ folder
+- never add any reference to claude to commit or any files
