@@ -90,6 +90,27 @@
 - **LLM Processing**: Required for fuzzy German text parsing in auctionObjects and remarks fields
 - **Documentation Structure**: Centralized in docs/ folder, git workflow with meaningful commits
 
+## Data Architecture Decisions (2025-09-02 CUJ Session)
+- **Database Schema**: 3-table structure (auctions, objects, shab_publications) with defined relationships
+- **Data Retention**: Complete XML storage for all SHAB publications with structured field extraction
+- **Primary Keys**: Internal auction UUIDs with separate SHAB publication tracking (meta_id, publication_nr, subsection_id)
+- **Auction-Publication Mapping**: 1:many relationships, MVP processes initial publications + cancellations only
+- **Extensibility**: Objects table designed for future data source integration (aerial imagery, GIS, Kataster)
+- **Documentation Separation**: Technical architecture moved to dedicated `auctiondeal_architecture.md` document
+
+## PRD Restructuring Session (2025-09-04)
+- **Challenge Identified**: Current PRD became convoluted through iterative edits, mixing content types and logical flow
+- **Solution Approach**: Complete restructuring using clean template structure (`context/prd_template.md`)
+- **Restructuring Strategy**: 
+  - Create new `auctiondeal_prd1.md` file with clean 12-chapter structure
+  - Consolidate detailed CUJs into concise journeys (details → user stories)
+  - Organize features logically: System features first, then user features by workflow
+  - Separate MVP from post-MVP features (placeholders)
+- **Progress Completed**:
+  - ✅ Chapter 1: Problem Statement (written to file with 5 core pain points)
+  - 📋 Chapter 2: Business Context & Opportunity (drafted, pending approval)
+- **Remaining Work**: Chapters 3-12 with clean content mapping and consolidation
+
 ## PRD Quality Fixes Applied
 - **Pricing Math Correction**: Fixed annual discount calculation (CHF 13-17 average vs CHF 12-16 effective monthly rate)
 - **Feature Scope Clarification**: MVP processes only primary property per auction, multi-object handling deferred to post-MVP

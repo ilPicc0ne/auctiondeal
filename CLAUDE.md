@@ -26,9 +26,10 @@ The system uses context-aware questioning to build PRDs tailored to your specifi
 This system automatically tracks decisions and context across sessions:
 
 ### Current PRD Status
-- **Active PRD**: Auctiondeal PRD (Complete)
-- **Last Session**: 2025-09-02 - PRD Expansion Complete
-- **Phase**: Ready for Implementation
+- **Active PRD**: Auctiondeal PRD (Restructuring in Progress)
+- **Last Session**: 2025-09-04 - PRD Clean-up & Restructuring
+- **Phase**: Creating Clean PRD Structure  
+- **Current Work**: Building `auctiondeal_prd1.md` with 12-chapter template structure
 
 ### Key Decisions Made
 - **Product Focus**: Swiss foreclosure auction aggregation platform
@@ -59,12 +60,19 @@ For detailed documentation, examples, and guidance, see the [template documentat
 ## Project Documentation Structure
 
 ### Core PRD Files
-- **`docs/auctiondeal_prd.md`** - Main Product Requirements Document (comprehensive specification)
+- **`docs/auctiondeal_prd1.md`** - Main Product Requirements Document (clean template structure, in progress)
+- **`docs/auctiondeal_prd.md`** - Legacy PRD (will be marked obsolete once prd1 is complete)
 - **`docs/auctiondeal_decisions.md`** - Decision tracking log with session history
+- **`context/prd_template.md`** - 12-chapter PRD template structure
 
 **Note**: PRD and decisions files are maintained only in docs/ folder for centralized documentation
 
 ### Technical Documentation
+- **System Architecture**: See `docs/auctiondeal_architecture.md` for complete technical specifications
+  - Database schema design (3-table structure: auctions, objects, shab_publications)
+  - Data processing pipeline workflows
+  - LLM integration and confidence scoring
+  - Performance optimization strategies
 - **SHAB API Interface**: See `docs/shab-api-interface.md` for complete Swiss Commercial Gazette API documentation
   - Primary data source for auction listings
   - Daily scraping implementation guidance
