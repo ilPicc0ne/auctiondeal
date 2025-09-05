@@ -6,7 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "data:backfill": "tsx scripts/manage-data.ts backfill",
+    "data:backfill:30": "tsx scripts/manage-data.ts backfill 30",
+    "data:clear": "tsx scripts/manage-data.ts clear",
+    "data:status": "tsx scripts/manage-data.ts status",
+    "test:pipeline": "tsx scripts/test-shab-pipeline.ts",
+    "test:volume": "tsx scripts/test-shab-volume.ts",
+    "test:duplicate-avoidance": "tsx scripts/test-duplicate-avoidance.ts",
+    "test:backfill-completeness": "tsx scripts/test-backfill-completeness.ts",
+    "test:database-validation": "tsx scripts/test-database-validation.ts",
+    "test:comprehensive-integration": "tsx scripts/test-comprehensive-integration.ts",
+    "test:all": "npm run test:duplicate-avoidance && npm run test:backfill-completeness && npm run test:database-validation && npm run test:comprehensive-integration"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
