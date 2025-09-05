@@ -32,24 +32,68 @@ Fetches a paginated list of SHAB publications (e.g. property auctions), filtered
 | `searchPeriod` | string | No | Time window preset (e.g., LAST7DAYS, TODAY, LAST30DAYS). |
 | `subRubrics` | string | No | Filter by subrubric (e.g., SB01 for property auctions). |
 
+### Authentication Requirements
+The SHAB API requires specific browser-like headers to authenticate requests:
+
+| Header | Value | Required |
+|--------|-------|----------|
+| `Accept` | `application/json` | Yes |
+| `User-Agent` | Browser user agent string | Yes |
+| `Referer` | `https://shab.ch/` | Yes |
+| `X-Requested-With` | `XMLHttpRequest` | Yes |
+
 ### Example Request
 ```http
-GET /api/v1/publications?allowRubricSelection=true&includeContent=false&pageRequest.page=0&pageRequest.size=100&publicationDate.end=2025-09-01&publicationDate.start=2025-08-26&publicationStates=PUBLISHED&searchPeriod=LAST7DAYS&subRubrics=SB01 HTTP/1.1
+GET /api/v1/publications?allowRubricSelection=true&includeContent=true&pageRequest.page=0&pageRequest.size=100&publicationDate.end=2025-09-05&publicationDate.start=2025-08-30&publicationStates=PUBLISHED,CANCELLED&subRubrics=SB01 HTTP/1.1
 Host: www.shab.ch
 Accept: application/json
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+Referer: https://shab.ch/
+X-Requested-With: XMLHttpRequest
 ```
 
 ### Response Format
-Returns a paginated JSON array of publication objects. Example:
+Returns a paginated JSON object with structured content. The API uses a two-step process:
 
+1. **Publications List** (`includeContent=true`) - Returns metadata with structured content
+2. **XML Content** (`/api/v1/publications/{metaId}/xml`) - Returns full XML document
+
+#### Publications Response Structure:
 ```json
 {
-  "metaId": "8fcb78c0-ba7f-473c-95fa-6be54a3f28b4",
-  "publicationNumber": "SB01-0000004345",
-  "publicationDate": "2025-09-01",
-  "publicationState": "PUBLISHED",
-  "language": "de",
-  "title": "Betreibungsamtliche Grundstücksteigerung Asha Kumari Jain Cornet"
+  "content": [
+    {
+      "meta": {
+        "id": "294efdd8-997a-485c-9ea0-fd6513b28337",
+        "publicationNumber": "SB01-0000004342",
+        "publicationDate": "2025-09-05T00:00:00.000Z",
+        "publicationState": "PUBLISHED",
+        "language": "fr",
+        "cantons": ["VD"],
+        "registrationOffice": {
+          "displayName": "Offices des poursuites du district de Nyon"
+        },
+        "title": {
+          "fr": "Vente aux enchères d'immeubles dans le cadre de la poursuite JEBSEN Jan Henrik",
+          "de": "Betreibungsamtliche Grundstücksteigerung JEBSEN Jan Henrik"
+        }
+      },
+      "content": {
+        "auctionObjects": "<p><b>Property details in HTML format...</b></p>",
+        "auction": {
+          "date": "2026-01-28T00:00:00.000Z",
+          "time": "10:00",
+          "location": "Nyon, Avenue Reverdil 2, salle des ventes juridiques"
+        },
+        "remarks": "Additional auction information..."
+      }
+    }
+  ],
+  "total": 11,
+  "pageRequest": {
+    "page": 0,
+    "size": 100
+  }
 }
 ```
 
@@ -63,17 +107,38 @@ GET /api/v1/publications/{metaId}/xml
 ### Description
 Fetches the complete structured XML data for a specific publication using its metaId. This XML contains detailed auction, property, and legal remedy information.
 
+### Authentication
+Requires the same browser-like headers as the publications endpoint.
+
 ### Example Request
 ```http
-GET https://www.shab.ch/api/v1/publications/8fcb78c0-ba7f-473c-95fa-6be54a3f28b4/xml
+GET https://www.shab.ch/api/v1/publications/294efdd8-997a-485c-9ea0-fd6513b28337/xml
 ```
 
 ### Response
-Returns a full XML document with comprehensive auction details including:
-- Property information (address, type, size)
-- Auction details (date, time, location)
-- Financial information (estimated value, minimum bid)
-- Legal information (auction conditions, documentation)
+Returns a full XML document using the `SB01:publication` namespace with comprehensive auction details:
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<SB01:publication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SB01="https://shab.ch/shab/SB01-export">
+<meta>
+  <id>294efdd8-997a-485c-9ea0-fd6513b28337</id>
+  <publicationNumber>SB01-0000004342</publicationNumber>
+  <publicationDate>2025-09-05</publicationDate>
+  <language>fr</language>
+  <cantons>VD</cantons>
+</meta>
+<content>
+  <auctionObjects>&lt;p>&lt;b>Property details with HTML entities...&lt;/b>&lt;/p></auctionObjects>
+  <auction>
+    <date>2026-01-28</date>
+    <time>10:00</time>
+    <location>Nyon, Avenue Reverdil 2, salle des ventes juridiques</location>
+  </auction>
+  <remarks>Additional information...</remarks>
+</content>
+</SB01:publication>
+```
 
 ## Sample XML Structure Analysis
 
@@ -133,10 +198,13 @@ Returns a full XML document with comprehensive auction details including:
 ## Implementation Notes for Auctiondeal
 
 ### Daily Scraping Strategy
-1. **Fetch New Publications**: Use `searchPeriod=TODAY` or date range filters to get daily updates
-2. **Filter for Property Auctions**: Use `subRubrics=SB01` to focus on property foreclosure auctions
-3. **Pagination**: Handle paginated responses with appropriate page size (recommend 100)
-4. **XML Content**: Fetch detailed XML for each relevant metaId to extract structured property data
+1. **Authentication**: Include required browser-like headers (Referer, X-Requested-With, User-Agent)
+2. **Fetch Publications List**: Use `includeContent=true&subRubrics=SB01&publicationStates=PUBLISHED,CANCELLED`
+3. **Two-Step Data Extraction**: 
+   - Get structured content from JSON response (auction date, time, location)
+   - Fetch raw XML using `/xml` endpoint for complete data preservation
+4. **Pagination**: Handle paginated responses with appropriate page size (recommend 100)
+5. **Raw Storage + LLM Processing**: Store both structured data and raw HTML for later LLM processing
 
 ### Key Subrubrics for Property Auctions
 - `SB01`: Property foreclosure auctions (Grundstücksteigerungen)

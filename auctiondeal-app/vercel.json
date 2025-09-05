@@ -1,0 +1,19 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/shab-sync",
+      "schedule": "30 16 * * *"
+    }
+  ],
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 60
+    }
+  },
+  "env": {
+    "DATABASE_URL": "@database-url-production",
+    "REDIS_URL": "@redis-url-production",
+    "CRON_SECRET": "@cron-secret",
+    "OPENAI_API_KEY": "@openai-api-key"
+  }
+}
