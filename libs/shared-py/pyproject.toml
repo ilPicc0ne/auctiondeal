@@ -1,0 +1,23 @@
+[project]
+name = "auctiondeal-shared-py"
+version = "1.0.0"
+description = "Shared Python utilities for Auctiondeal services"
+requires-python = ">=3.11"
+dependencies = [
+    "psycopg[binary]>=3.1.0",
+    "pydantic>=2.0.0",
+    "structlog>=23.0.0",
+    "sqlalchemy>=2.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/auctiondeal_shared",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["auctiondeal_shared"]

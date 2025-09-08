@@ -50,5 +50,8 @@
     "tailwindcss": "^4",
     "tsx": "^4.20.5",
     "typescript": "^5"
+  },
+  "prisma": {
+    "schema": "../../db/prisma/schema.prisma"
   }
 }
