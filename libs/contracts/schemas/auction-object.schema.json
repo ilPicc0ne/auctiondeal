@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AuctionObject",
+  "description": "Property/object being auctioned",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the auction object"
+    },
+    "auctionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID of the associated auction"
+    },
+    "address": {
+      "type": "string",
+      "description": "Property address"
+    },
+    "propertyDescription": {
+      "type": "string",
+      "description": "Full property description from auctionObjects field"
+    },
+    "estimatedValue": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Estimated value in CHF"
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": ["Land", "MFH", "EFH", "Commercial", "Various", "Parking"],
+      "description": "LLM-classified property type"
+    },
+    "propertyTypeConfidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "LLM confidence score for property type classification"
+    },
+    "viewingAppointments": {
+      "type": "string",
+      "description": "Viewing appointment information extracted from remarks"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Geographic latitude coordinate"
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Geographic longitude coordinate"
+    },
+    "aerialImageryUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to aerial imagery of the property"
+    },
+    "gisData": {
+      "type": "object",
+      "description": "Geographic Information System data"
+    },
+    "katasterInfo": {
+      "type": "object",
+      "description": "Cadastral information"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the record was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the record was last updated"
+    }
+  },
+  "required": ["id", "auctionId", "address"],
+  "additionalProperties": false
+}

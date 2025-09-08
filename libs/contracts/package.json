@@ -1,0 +1,23 @@
+{
+  "name": "@auctiondeal/contracts",
+  "version": "1.0.0",
+  "description": "Schema definitions and generated types for Auctiondeal services",
+  "main": "codegen/ts/index.js",
+  "types": "codegen/ts/index.d.ts",
+  "scripts": {
+    "generate": "./scripts/generate.sh",
+    "build": "tsc",
+    "clean": "rm -rf codegen/",
+    "dev": "npm run generate && tsc --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "json-schema-to-typescript": "^13.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "codegen/",
+    "schemas/",
+    "scripts/"
+  ]
+}
