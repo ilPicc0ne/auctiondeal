@@ -12,7 +12,26 @@
 - You should update the plan as you work.
 - After you complete tasks in the plan, you should update and append detailed descriptions of the changes you made, so following tasks can be easily hand over to other engineers.
 
-**Ready to start?** Edit `context/initial.md` with your project idea and run `/prd_create_base`!
+## Current Project: Service Architecture Restructuring
+
+**Branch**: `feature/service-architecture-restructure`  
+**Plan**: See `plan.md` for complete implementation roadmap  
+**Status**: Ready to execute phase-by-phase migration  
+
+### Migration Overview
+Transforming monolithic structure into professional service-oriented architecture:
+- **services/**: webapp, collector-node, etl-py
+- **libs/**: shared-ts, shared-py, contracts  
+- **db/**: centralized database management
+- **ops/**: infrastructure and deployment
+
+### Execution Strategy
+- 8 phases with git commits at each milestone
+- Safety: each phase results in working state
+- Rollback: git branch allows safe experimentation
+- Progress tracking: update this file after each phase completion
+
+**Ready to start?** Execute `plan.md` phase by phase
 
 ## Project Documentation Structure
 
