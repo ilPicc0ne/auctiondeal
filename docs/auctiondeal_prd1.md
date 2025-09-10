@@ -289,6 +289,7 @@ Converts SHAB's raw auction listings into filtered, searchable property data wit
 - All historical records properly parsed and structured
 - Data quality validation completed
 - Raw data preserved for future reprocessing
+- Avoids duplicates in data (meta id)
 
 ---
 
@@ -299,7 +300,7 @@ Converts SHAB's raw auction listings into filtered, searchable property data wit
 - Daily automated synchronization with SHAB API
 - New auction listings appear within 2 hours of publication (normally 16:00 weekdays)
 - System handles API failures gracefully
-- Duplicate publications prevented
+- Avoids duplicates in data (meta id)
 
 ---
 
@@ -308,9 +309,10 @@ Converts SHAB's raw auction listings into filtered, searchable property data wit
 
 ***AC:***
 - 95%+ accuracy in property type classification (Wohnung, EFH, MFH, Commercial, etc.)
-- Estimated value extraction from auction text
-- Property location identification and standardization
+- Estimated value extraction from auction obeject
+- Property location identification and standardization (geolocation service)
 - Confidence scoring for extracted data
+
 
 ---
 

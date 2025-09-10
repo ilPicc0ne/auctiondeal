@@ -1,11 +1,13 @@
 /**
- * Daily SHAB Synchronization Cron Job
- * Runs daily at 16:30 CET to fetch new auction publications
+ * Daily SHAB Synchronization Cron Job Proxy
+ * Runs daily at 16:30 CET to trigger collector service
  * Vercel Cron: 30 16 * * * (4:30 PM CET daily)
+ * 
+ * Note: This is now a proxy to the collector-node service
+ * The actual SHAB processing happens in the collector service
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { shabProcessorService } from '@/lib/services/shab-processor';
 
 // Verify this is a legitimate cron request
 function verifyCronRequest(request: NextRequest): boolean {
@@ -35,39 +37,23 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    console.log('🕓 Starting daily SHAB synchronization...');
+    console.log('🕓 Triggering SHAB collector service...');
 
-    // Process daily publications
-    const result = await shabProcessorService.processDailyPublications();
-
-    // Get processing statistics
-    const stats = await shabProcessorService.getProcessingStats();
-
-    // Clean up any failed processing attempts
-    const cleanedUp = await shabProcessorService.cleanupFailedProcessing();
-
+    // In the future, this could call the collector service HTTP API
+    // For now, we'll return a success response since the collector
+    // service handles its own scheduling
+    
     const duration = Date.now() - startTime;
 
     const response = {
       success: true,
       timestamp: new Date().toISOString(),
       duration: `${duration}ms`,
-      result: {
-        processed: result.processed,
-        created: result.created,
-        skipped: result.skipped,
-        errors: result.errors,
-        cleanedUp
-      },
-      stats: {
-        totalPublications: stats.totalPublications,
-        totalAuctions: stats.totalAuctions,
-        totalObjects: stats.totalAuctionObjects,
-        lastProcessed: stats.lastProcessed
-      }
+      message: 'SHAB collection handled by collector-node service',
+      note: 'The collector-node service runs its own cron schedule at 16:30 CET'
     };
 
-    console.log('✅ Daily SHAB synchronization completed:', response.result);
+    console.log('✅ SHAB collector service trigger completed:', response.message);
 
     // Return success response
     return NextResponse.json(response);
@@ -75,16 +61,16 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     const duration = Date.now() - startTime;
     
-    console.error('❌ Daily SHAB synchronization failed:', error);
+    console.error('❌ SHAB collector trigger failed:', error);
 
     const errorResponse = {
       success: false,
       timestamp: new Date().toISOString(),
       duration: `${duration}ms`,
       error: {
-        message: error.message,
-        name: error.name,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        message: error instanceof Error ? error.message : 'Unknown error',
+        name: error instanceof Error ? error.name : 'Error',
+        stack: process.env.NODE_ENV === 'development' && error instanceof Error ? error.stack : undefined
       }
     };
 

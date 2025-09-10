@@ -1,0 +1,51 @@
+{
+  "name": "@auctiondeal/collector-node",
+  "version": "1.0.0",
+  "description": "SHAB data collection service for Auctiondeal",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest tests/unit/",
+    "test:integration": "jest tests/integration/",
+    "test:api": "npm run build && node scripts/test-api.js",
+    "test:database": "npm run build && node scripts/test-database.js",
+    "test:manual": "npm run test:api && npm run test:database",
+    "test:all": "npm test && npm run test:manual",
+    "db:backfill": "tsx scripts/db-backfill.ts",
+    "db:backfill:30": "tsx scripts/db-backfill.ts 30",
+    "db:clear": "tsx scripts/db-clear.ts",
+    "db:clear:force": "tsx scripts/db-clear.ts --force",
+    "db:status": "tsx scripts/db-status.ts",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@auctiondeal/contracts": "file:../../libs/contracts",
+    "@auctiondeal/shared-ts": "file:../../libs/shared-ts",
+    "@prisma/client": "^5.22.0",
+    "dotenv": "^17.2.2",
+    "fast-xml-parser": "^4.3.0",
+    "node-cron": "^3.0.3",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "@types/node-cron": "^3.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "prisma": "^5.0.0",
+    "ts-jest": "^29.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "prisma": {
+    "schema": "../../db/prisma/schema.prisma"
+  }
+}

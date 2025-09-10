@@ -7,7 +7,7 @@ declare global {
 }
 
 export const getPrismaClient = () => {
-  if (typeof window !== 'undefined') return null
+  if (typeof globalThis !== 'undefined' && 'window' in globalThis) return null
   
   if (!global.__prisma) {
     global.__prisma = new PrismaClient({
@@ -26,7 +26,8 @@ export default db
 export class DatabaseUtils {
   static async healthCheck(): Promise<boolean> {
     try {
-      await db?.$queryRaw`SELECT 1`
+      if (!db) return false
+      await db.$queryRaw`SELECT 1`
       return true
     } catch (error) {
       console.error('Database health check failed:', error)
